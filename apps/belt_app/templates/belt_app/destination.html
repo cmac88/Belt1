@@ -1,0 +1,21 @@
+<html>
+<head>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<title>Destination</title>
+</head>
+<body class="w-75 p-4">
+	<a class='float-right' href="/belt/logout">Logout</a>
+	<a class='float-right' href="/belt">Home|</a>
+	<h1 class="mb-4">{{destination.destination}}</h1>
+	<ul>
+		<li>Planned By: {{destination.user_planned_it.name}}</li>
+		<li>Description: {{destination.description}}</li>
+		<li>Travel Date From: {{destination.start}}</li>
+		<li>Travel Date To: {{destination.end}}</li>
+	</ul>
+	<h3 class='mt-5'>Other Users Attending</h3>
+		{% for user in attending %}
+			<p class='ml-4'>{{user.name}}</p>
+		{% endfor %}
+</body>
+</html>

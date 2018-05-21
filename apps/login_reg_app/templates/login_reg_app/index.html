@@ -1,0 +1,73 @@
+<html>
+<head>
+	{% load static %}
+	<!-- <link rel="stylesheet" href="{% static 'login_reg_app/css/style.css' %}"> -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<title>Login and Registration</title>
+</head>
+<body>
+	<h1 class="ml-4 mt-4">Welcome!</h1>
+	<div class='ml-4 mt-4 p-2 d-inline-block border border-primary w-35 align-top'>
+		<h2>Registration</h2>
+		<form action='/login_reg/create' method='POST'>
+			{% csrf_token %}
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'name' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Name:<input type='text' name='name'><br>
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'user' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Username:<input type='text' name='username'><br>
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'password' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Password:<input type='password' name='pw'><br>
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'confirm_pw' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Confirm Password:<input type='password' name='confirm_pw'><br>
+			<input type='submit' class="btn btn-primary mt-2" value='Register'>
+		</form>
+	</div>
+	<div class='ml-4 mt-4 p-2 d-inline-block border border-primary w-35 align-top h-60'>
+		<h2>Login</h2>
+		<form action='/login_reg/login' method='POST'>
+			{% csrf_token %}
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'logu' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Username:<input type='text' name='username'><br>
+			<ul class="mt-2 text-danger">
+				{% for message in messages %}
+					{% if 'login_pw' in message.tags %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			Password:<input type='password' name='pw'><br>
+			<input type='submit' class="btn btn-primary mt-2" value='Login'>
+		</form>
+	</div>
+</body>
+</html>

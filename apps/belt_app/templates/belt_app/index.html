@@ -1,0 +1,58 @@
+<html>
+<head>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<title>Home</title>
+</head>
+<body>
+	<div class="w-75">
+	<a  class= 'float-right' href="/belt/logout">Logout</a>
+	<h1 class="m-5">Hello, {{user_info.name}}!</h1>
+	<p class="m-3">Your Trip Schedules</p>
+	<div class="m-3 mb-5">
+		<table class='table border'>
+			<thead>
+				<th>Destination</th>
+				<th>Travel Start Date</th>
+				<th>Travel End Date</th>
+				<th>Plan</th>
+			</thead>
+			<tbody>
+				{% for trip in trips_user %}
+					<tr>
+						<td><a href="/belt/destination/{{trip.id}}">{{trip.destination}}</a></td>
+						<td>{{trip.start}}</td>
+						<td>{{trip.end}}</td>
+						<td>{{trip.description}}</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+	<p class="m-3 mt-5">Other User's Travel Plans</p>
+	<div class="m-3">
+		<table class='table border'>
+			<thead>
+				<th>Name</th>
+				<th>Destination</th>
+				<th>Travel Start Date</th>
+				<th>Travel End Date</th>
+				<th>Do You Want to Join?</th>
+			</thead>
+			<tbody>
+				{% for travel in trips_not_user %}
+				<tr>
+					<td>{{travel.user_planned_it.name}}</td>
+					<td><a href="/belt/destination/{{travel.id}}">{{travel.destination}}</a></td>
+					<td>{{travel.start}}</td>
+					<td>{{travel.end}}</td>
+					<td><a href="/belt/join/{{travel.id}}">Join?</a></td>
+				</tr>	
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<a class="float-right" href="/belt/add">Add Travel Plan</a>
+	</div>
+</body>
+</html>
